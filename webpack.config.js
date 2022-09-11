@@ -1,12 +1,14 @@
 const path = require ("path");
 const HtmlWebpackPlugin = require ('html-webpack-plugin')
-const MiniCssExtractPlugin = require ('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
+
 
 module.exports = {
     entry: "/src/index.js",
     output: {
         path: path.resolve (__dirname, 'dist'),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: '/'
     },
     mode: "development",
     resolve: {
@@ -14,7 +16,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {test: /\.(js|jsx)$/,
+        {test: /\.(js|jsx)$/,
         exclude: "/node_modules",
     use: {
         loader: 'babel-loader',
@@ -26,19 +28,24 @@ module.exports = {
     use: [
         {loader: 'html-loader'}
     ]  },
-    {test: /\.sa[ac]ss$/,
-    use: ['css-loader',
-    'style-loader',
-    'sass-loader']}
+    {test: /\.(css|s[ac]ss)$/i,
+    use: ['style-loader','css-loader','sass-loader']}
         ]
     },
     plugins: [
         new HtmlWebpackPlugin ({
             inject: true,
             template: "./public/index.html",
-            filename: '/menu.html'
+            filename: './index.html'
         }), new MiniCssExtractPlugin ({
             filename: "[name].css"
         })
     ]
-}
+} 
+devServer: {static: {
+    directory: path.join(__dirname, 'public')}
+    compress: true;
+    port: 3005;
+    historyApiFallback: true;
+    open: true}
+  
