@@ -11,6 +11,12 @@ module.exports = {
         publicPath: '/'
     },
     mode: "development",
+    devServer:{
+        historyApiFallback: true,
+        compress: true,
+        port: 3005,
+        open: true},
+
     resolve: {
         extensions: ['.js', '.jsx']
     },
@@ -24,6 +30,10 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react']
         }
     }},
+    {
+        test: /\.(png|svg|jpg|gif)$/,
+        type: "asset"
+    },
     {test: /\.html$/,
     use: [
         {loader: 'html-loader'}
@@ -42,10 +52,5 @@ module.exports = {
         })
     ]
 } 
-devServer: {static: {
-    directory: path.join(__dirname, 'public')}
-    compress: true;
-    port: 3005;
-    historyApiFallback: true;
-    open: true}
+
   
