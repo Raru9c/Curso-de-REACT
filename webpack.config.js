@@ -40,7 +40,6 @@ module.exports = {
     }},
     {
         test: /\.(png|svg|jpg|gif)$/,
-        type: "asset",
         loader: 'file-loader',
         options: {
             name: 'images/[hash]-[name].[ext]'    
