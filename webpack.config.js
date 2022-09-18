@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
 
 
 
+
+
 module.exports = {
     entry: "/src/index.js",
     output: {
@@ -35,7 +37,7 @@ module.exports = {
     use: {
         loader: 'babel-loader',
         options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
         }
     }},
     {
@@ -60,7 +62,7 @@ module.exports = {
             filename: './index.html'
         }), new MiniCssExtractPlugin ({
             filename: "[name].css"
-        })
+        }), 
     ]
 } 
 
