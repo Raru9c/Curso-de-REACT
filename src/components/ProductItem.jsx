@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
 import '../styles/ProductItem.scss';
-import addtoCart from '@icons/bt_add_to_cart.svg';
+import addtoCartImage from '@icons/bt_add_to_cart.svg';
 import { useState } from 'react';
 import ProductList from '../containers/ProductList';
 
 const ProductItem = ({product}) => {
-	const [cart, setCart] = useState ([])
-	const handleClick = () => {
-		setCart ([]);
+	const { addToCart } = useContext (AppContext) 
+	const handleClick = item => {
+		addToCart (item);
 	}
 	return (
 		<div className="ProductItem">
@@ -18,8 +19,8 @@ const ProductItem = ({product}) => {
 					{product.title}
 					<p>Bike</p>
 				</div>
-				<figure onClick={handleClick}>
-					<img src={addtoCart} alt="" />
+				<figure onClick={() => handleClick (product)}>
+					<img src={addtoCartImage} alt="" />
 				</figure>
 			</div>
 		</div>
